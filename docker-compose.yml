@@ -1,0 +1,32 @@
+version: "3.9"
+
+services:
+  db:
+    image: postgres:latest
+    restart: on-failure
+    volumes:
+      - data:/var/log/postgres/data
+    ports:
+      - "5432:5432"
+    hostname: db
+    environment:
+      POSTGRES_HOST_AUTH_METHOD: trust
+      POSTGRES_DB: hornet
+      POSTGRES_USER: postgres
+      #POSTGRES_PASSWORD: postgres
+
+  hornet:
+    restart: always
+    build:
+      dockerfile: Dockerfile
+      context: .
+    ports:
+      - "8080:8080"
+    hostname: hornet
+    environment:
+      DATABASE_URL: postgres://postgres@db/hornet?sslmode=disable
+    depends_on:
+      - db
+
+volumes:
+  data:
