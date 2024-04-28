@@ -1,22 +1,29 @@
+This document specifies guideines to start stemcell-GO which is a basic server application. 
+
+The intent of this repository is to provide a basic framework to write GO server application which only requires to replace business logic.
+
+
 The project spawns 2 microservices:
 1. PostgreSQL - database for data storage
 2. Hornet - web server for CRUD operations
 
 
 Pre-requisites:
-1. Docker and docker-compose utility must be installed on the setup.
-2. Internet connection to download docker images
+1. Internet connection to download dependencies.
 
 
-To start the project run below command from the directory docker-compose.yml is present:
+To start the server-
+1. on Ubuntu machine, run script "run-ubuntu.sh"
+2. for other OSs, run below command from the project directory where docker-compose.yml is present:
 	docker-compose up -d 
+NOTE: On host machines with OSs other then Ubuntu, docker and docker-compose utility must be already installed on it.
 
 
 To interact with the server-
-1. get host IP of the machine running the microservices:
+1. get server host IP of the machine running the microservices:
 	 ifconfig|less
 2. The server listens on port 8080. One can send request using curl or Postman.
-	ex: curl -k http://<ip>:8080/api/resource/
+	ex: curl -k http://localhost:8080/api/resource/
 
 
 The server exposes 5 API endpoints:
@@ -33,3 +40,10 @@ ex:
 	"payload": <string>
 }
 
+
+
+
+The ansible-playbook directory contains playbooks to deploy a running stemcell-GO server on a EC2 instance. Refer to its README.txt for more info.
+
+
+The exposed endpoints can be tested via importing postman collection provided in test/postman-collections directory.
