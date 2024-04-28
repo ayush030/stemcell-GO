@@ -1,0 +1,29 @@
+- name: EC2 instance configuration
+  hosts: ec2_instances
+  become: yes
+  become_flags: '-i'
+  gather_facts: false
+  remote_user: ubuntu
+
+  vars:
+    key_name: my_aws             # Key used for SSH
+    region: ap-south-1           # Region of ec2 instance       
+    stemcell_repo: "https://github.com/ayush030/stemcell-GO.git"   # Git repo for server code
+
+  tasks:
+    - name: Configuring EC2 instances
+      block:
+      - name: Pause for 3 minutes s.t. EC2 instance gets initialized
+        ansible.builtin.pause:
+          minutes: 3    
+
+      - name: Install  git
+        ansible.builtin.apt: name=git state=present
+
+      - name: Clone git repo
+        ansible.builtin.shell: git clone https://github.com/ayush030/stemcell-GO.git /home/ubuntu/stemcell-GO/
+
+
+      - name: Run shell script to launch server
+        ansible.builtin.shell: bash /home/ubuntu/stemcell-GO/run-ubuntu.sh
+
