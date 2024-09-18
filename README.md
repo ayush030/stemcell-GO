@@ -1,5 +1,4 @@
-										![download](https://github.com/user-attachments/assets/89aaf999-250a-497c-9e5d-15f81a6ddb50)
-
+![1_WNAfe8HdCISV0MFnK5cnag](https://github.com/user-attachments/assets/8a61a207-6c8d-4ad4-934b-e4e9f6d6b77f)
 This document specifies guideines to start stemcell-GO which is a ready to deploy REST API server application. 
 
 The intent of this repository is to provide a framework to write GO server application which only requires to replace business logic, skipping all the hassle to create other environment.
