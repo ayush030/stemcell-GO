@@ -1,4 +1,4 @@
-![download](https://github.com/user-attachments/assets/89aaf999-250a-497c-9e5d-15f81a6ddb50)
+										![download](https://github.com/user-attachments/assets/89aaf999-250a-497c-9e5d-15f81a6ddb50)
 
 This document specifies guideines to start stemcell-GO which is a ready to deploy REST API server application. 
 
