@@ -1,7 +1,8 @@
-This document specifies guideines to start stemcell-GO which is a basic server application. 
+![download](https://github.com/user-attachments/assets/89aaf999-250a-497c-9e5d-15f81a6ddb50)
 
-The intent of this repository is to provide a basic framework to write GO server application which only requires to replace business logic.
+This document specifies guideines to start stemcell-GO which is a ready to deploy REST API server application. 
 
+The intent of this repository is to provide a framework to write GO server application which only requires to replace business logic, skipping all the hassle to create other environment.
 
 The project spawns 2 microservices:
 1. PostgreSQL - database for data storage
