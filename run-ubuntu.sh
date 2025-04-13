@@ -24,5 +24,5 @@ echo 'Docker successfully installed.'
 
 sudo usermod -aG docker ${USER}
 
-cd /home/ubuntu/stemcell-GO/
-sudo docker-compose up -d
+cd $(go env GOPATH)/src/stemcell-GO/
+sudo docker compose up -d

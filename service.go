@@ -3,6 +3,7 @@ package hornet
 import (
 	"context"
 	"fmt"
+
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 )
@@ -26,6 +27,7 @@ func (service *Service) DB(ctx context.Context) *gorm.DB {
 
 func (service *Service) ConnectDB() error {
 	dsn := service.DBUrl // "host=db user=postgres password=postgres dbname=hornet port=5432 sslmode=disable TimeZone=UTC"
+
 	db, err := gorm.Open(postgres.Open(dsn), &gorm.Config{})
 	if err != nil {
 		fmt.Println("Unable to connect to DB. Error: " + err.Error())
@@ -33,9 +35,9 @@ func (service *Service) ConnectDB() error {
 	}
 
 	service.DatabaseConnection = db
+
 	return nil
 }
 
 func (service *Service) End() {
-	return
 }

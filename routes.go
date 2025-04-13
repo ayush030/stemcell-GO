@@ -11,7 +11,6 @@ func (service *Service) AddRoutes(server *echo.Echo, s *Service) {
 
 		* GET /api/resource/ - List all resources
 	*/
-
 	server.GET("/api/resource/:id", s.GetResourceWrapper)
 	server.GET("/api/resource/:id/", s.GetResourceWrapper)
 

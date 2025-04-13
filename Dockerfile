@@ -1,4 +1,4 @@
-FROM  golang:1.21-alpine3.18 as builder
+FROM  golang:1.24.2-alpine3.21 as builder
 
 RUN apk --no-cache add bash fish ca-certificates curl build-base
 

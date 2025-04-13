@@ -1,0 +1,51 @@
+version: '2'
+linters:
+  disable-all: true
+  enable:
+    - errcheck
+    - gosec
+    - revive
+    - ineffassign
+    - staticcheck
+    - unused
+    - depguard
+    - dogsled
+    - gochecknoglobals
+    - gochecknoinits
+    - goconst
+    - gosec
+    - iface
+    - predeclared
+    - promlinter
+    - sqlclosecheck
+    - unconvert
+    - whitespace
+    - wsl
+  exclusions:
+    paths:
+      - vendor/*
+  settings:
+    depguard:
+      rules:
+        main:
+        # Defines package matching behavior. Available modes:
+        # - `original`: allowed if it doesn't match the deny list and either matches the allow list or the allow list is empty.
+        # - `strict`: allowed only if it matches the allow list and either doesn't match the deny list or the allow rule is more specific (longer) than the deny rule.
+        # - `lax`: allowed if it doesn't match the deny list or the allow rule is more specific (longer) than the deny rule.
+        # Default: "original"
+          list-mode: lax
+          allow:
+            - $gostd
+            - github.com/*
+            - hornet/*
+            - gorm.io/*
+    revive:
+      confidence: 0.8
+
+formatter:
+  enable:
+    - gci
+    - gofumpt
+    - golines
+    - goimports
+    - gofmt

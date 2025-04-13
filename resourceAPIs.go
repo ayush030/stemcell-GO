@@ -3,9 +3,10 @@ package hornet
 import (
 	"context"
 	"fmt"
-	"github.com/labstack/echo/v4"
 	"hornet/models"
 	"net/http"
+
+	"github.com/labstack/echo/v4"
 )
 
 func (service *Service) GetResourceWrapper(c echo.Context) error {
@@ -37,6 +38,7 @@ func (service *Service) CreateResourceWrapper(c echo.Context) error {
 	ctx := c.Request().Context()
 
 	createPayload := &models.CreateUpdateResource{}
+
 	err := c.Bind(&createPayload)
 	if err != nil {
 		fmt.Println("Invalid update request. Error: " + err.Error())
@@ -56,6 +58,7 @@ func (service *Service) UpdateResourceWrapper(c echo.Context) error {
 	ctx := c.Request().Context()
 	identifier := c.Param("id")
 	updatePayload := &models.CreateUpdateResource{}
+
 	err := c.Bind(&updatePayload)
 	if err != nil {
 		fmt.Println("Invalid update request. Error: " + err.Error())
@@ -88,21 +91,26 @@ func (service *Service) DeleteResourceWrapper(c echo.Context) error {
 
 func (service *Service) GetResource(ctx context.Context, identifier string) (interface{}, error) {
 	resource := models.Resource{}
+
 	err := service.DB(ctx).Table("resources").Where("id=?", identifier).Take(&resource).Error
 	if err != nil {
 		fmt.Println("GetResource: Unable to get resource form DB. Error: " + err.Error())
+
 		return nil, err
 	}
+
 	return resource, nil
 }
 
 func (service *Service) ListResource(ctx context.Context) (interface{}, error) {
 	var resources []models.Resource
+
 	err := service.DB(ctx).Table("resources").Select("*").Find(&resources).Error
 	if err != nil {
 		fmt.Println("ListResource: Unable to list resources from DB. Error: " + err.Error())
 		return nil, err
 	}
+
 	return resources, nil
 }
 
@@ -114,6 +122,7 @@ func (service *Service) CreateResource(ctx context.Context, payload *models.Crea
 		fmt.Println("CreateResource: Unable to create resource in DB. Error: " + err.Error())
 		return nil, err
 	}
+
 	return resource, nil
 }
 
@@ -123,6 +132,7 @@ func (service *Service) UpdateResource(ctx context.Context, identifier string, p
 		fmt.Println("UpdateResource: Unable to update resource in DB. Error: " + err.Error())
 		return err
 	}
+
 	return nil
 }
 
@@ -132,5 +142,6 @@ func (service *Service) DeleteResource(ctx context.Context, identifier string) e
 		fmt.Println("DeleteResource: Unable to delete resource in DB. Error: " + err.Error())
 		return err
 	}
+
 	return nil
 }
